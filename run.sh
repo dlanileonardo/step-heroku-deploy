@@ -318,6 +318,7 @@ use_new_git_repository() {
         debug "found git repository in $working_directory"
         warn "Removing git repository from $working_directory"
         rm -rf "$working_directory/.git"
+        rm .gitignore
 
         #submodules found are flattened
         if [ -f "$working_directory/.gitmodules" ]; then
@@ -327,6 +328,9 @@ use_new_git_repository() {
                 rm -f "$file" && warn "Removed submodule $file"
             done < <(find "$working_directory" -type f -name ".git" -print0)
         fi
+
+        # Cria um novo gitignore
+        echo $GITIGNORE_FILES | tr " " "\n" > .gitignore
     fi
 
     # Create git repository and add all files.
