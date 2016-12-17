@@ -330,7 +330,7 @@ use_new_git_repository() {
         fi
 
         # Cria um novo gitignore
-        echo $GITIGNORE_FILES | tr " " "\n" > .gitignore
+        echo "$GITIGNORE_FILES" | tr " " "\n" > .gitignore
     fi
 
     # Create git repository and add all files.
